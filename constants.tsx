@@ -1,6 +1,22 @@
 
 import React from 'react';
-import { LayoutGrid, Store, Package, Users, Settings, HelpCircle, Sparkles, Activity } from 'lucide-react';
+import { 
+  LayoutGrid, 
+  Store, 
+  Package, 
+  Users, 
+  Settings, 
+  HelpCircle, 
+  Sparkles, 
+  Activity,
+  TrendingUp,
+  ClipboardList,
+  ArrowLeftRight,
+  Receipt,
+  Wallet,
+  MessageSquare,
+  CheckSquare
+} from 'lucide-react';
 
 export const COLORS = {
   primary: '#0d9488', // teal-600
@@ -12,12 +28,23 @@ export const COLORS = {
 };
 
 export const NAVIGATION_ITEMS = [
-  { id: 'overview', name: 'Overview', icon: <LayoutGrid size={20} />, section: 'MAIN MENU' },
-  { id: 'store', name: 'Store', icon: <Store size={20} />, section: 'MAIN MENU' },
-  { id: 'product', name: 'Product', icon: <Package size={20} />, section: 'MAIN MENU' },
-  { id: 'customer', name: 'Customer', icon: <Users size={20} />, section: 'MAIN MENU' },
-  { id: 'setting', name: 'Setting', icon: <Settings size={20} />, section: 'OTHER' },
-  { id: 'help', name: 'Help Center', icon: <HelpCircle size={20} />, section: 'OTHER' },
+  // CORE
+  { id: 'dashboard', name: 'Dashboard', icon: <LayoutGrid size={20} />, section: 'CORE' },
+  { id: 'sales', name: 'Sales', icon: <TrendingUp size={20} />, section: 'CORE' },
+  { id: 'customers', name: 'Customers', icon: <Users size={20} />, section: 'CORE' },
+  { id: 'products', name: 'Products', icon: <Package size={20} />, section: 'CORE' },
+  { id: 'inventory', name: 'Inventory', icon: <ClipboardList size={20} />, section: 'CORE' },
+  { id: 'transfer', name: 'Transfer', icon: <ArrowLeftRight size={20} />, section: 'CORE' },
+  
+  // BUSINESS
+  { id: 'expenses', name: 'Expenses', icon: <Receipt size={20} />, section: 'BUSINESS' },
+  { id: 'finance', name: 'Finance', icon: <Wallet size={20} />, section: 'BUSINESS' },
+  { id: 'messaging', name: 'Messaging', icon: <MessageSquare size={20} />, section: 'BUSINESS' },
+  { id: 'tasks', name: 'Tasks', icon: <CheckSquare size={20} />, section: 'BUSINESS' },
+  
+  // SYSTEM
+  { id: 'support', name: 'Support', icon: <HelpCircle size={20} />, section: 'SYSTEM' },
+  { id: 'settings', name: 'Settings', icon: <Settings size={20} />, section: 'SYSTEM' },
 ];
 
 export const SALES_CHART_DATA = [

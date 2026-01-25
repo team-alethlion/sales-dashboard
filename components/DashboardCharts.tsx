@@ -117,20 +117,14 @@ export const ProfitAndLossChart: React.FC<ChartProps> = ({ data }) => {
   );
 };
 
-export const SalesByStoreChart: React.FC = () => {
+export const SalesByStoreChart: React.FC<ChartProps> = ({ data }) => {
   const isDark = useIsDark();
   const labelColor = isDark ? '#64748b' : '#9ca3af';
-
-  const STORE_LOCATION_DATA = [
-    { location: 'Downtown', value: 17, label: '$17.0M' },
-    { location: 'Commercial', value: 7.1, label: '$7.1M' },
-    { location: 'Airport', value: 13, label: '$13.0M' },
-  ];
 
   return (
     <div className="h-48 w-full mt-4">
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={STORE_LOCATION_DATA} layout="vertical" margin={{ left: -10, right: 20 }}>
+        <BarChart data={data} layout="vertical" margin={{ left: 10, right: 20 }}>
           <XAxis type="number" hide />
           <YAxis 
             dataKey="location" 
@@ -138,6 +132,7 @@ export const SalesByStoreChart: React.FC = () => {
             axisLine={false} 
             tickLine={false} 
             tick={{ fill: labelColor, fontSize: 11 }}
+            width={80}
           />
           <Tooltip 
             contentStyle={{ 
@@ -149,7 +144,7 @@ export const SalesByStoreChart: React.FC = () => {
             }}
           />
           <Bar dataKey="value" radius={[0, 4, 4, 0]} barSize={20}>
-            {STORE_LOCATION_DATA.map((entry, index) => (
+            {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={index === 0 ? COLORS.primary : (isDark ? '#134e4a' : '#99f6e4')} />
             ))}
           </Bar>

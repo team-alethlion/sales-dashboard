@@ -1,9 +1,12 @@
 
 import { GoogleGenAI } from "@google/genai";
 
+/**
+ * Fetches dashboard insights from the Gemini model based on provided sales data.
+ */
 export const getDashboardInsights = async (data: any) => {
+  // Initialize the Gemini client with the API key from environment variables.
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-  const modelName = 'gemini-3-flash-preview';
   
   const prompt = `
     Analyze the following dashboard sales data and provide 3 concise, actionable business insights.
@@ -12,10 +15,12 @@ export const getDashboardInsights = async (data: any) => {
   `;
 
   try {
+    // Call generateContent with the model name and prompt.
     const response = await ai.models.generateContent({
-      model: modelName,
+      model: 'gemini-3-flash-preview',
       contents: prompt,
     });
+    // Directly access the .text property from the response.
     return response.text;
   } catch (error) {
     console.error("Gemini API Error:", error);
