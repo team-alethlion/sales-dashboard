@@ -17,7 +17,10 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, onNavigate }) => {
     // Logic for nested views or sub-routes
     if (itemId === 'sales' && (activeView === 'sales' || activeView === 'new_sale')) return true;
     if (itemId === 'customers' && (activeView === 'customers' || activeView === 'new_customer')) return true;
+    if (itemId === 'products' && (activeView === 'products' || activeView === 'new_product')) return true;
+    if (itemId === 'inventory' && activeView === 'inventory') return true;
     if (itemId === 'dashboard' && activeView === 'dashboard') return true;
+    if (itemId === 'carriage_inwards' && activeView === 'carriage_inwards') return true;
     return activeView === itemId;
   };
 
@@ -63,24 +66,24 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, onNavigate }) => {
         ))}
       </nav>
 
-      {/* Utility Area */}
-      <div className="mt-auto">
+      {/* Utility Area (Printer Pairing) */}
+      <div className="px-5 py-6 shrink-0 border-t border-gray-50 dark:border-slate-800/50 bg-gray-50/20 dark:bg-slate-900/50">
         <PrinterPairing />
-        
-        {/* Fixed Footer Profile */}
-        <div className="p-4 border-t border-gray-100 dark:border-slate-800 shrink-0 bg-white dark:bg-slate-900">
-          <div className="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800 cursor-pointer transition-all group">
-            <img 
-              src="https://picsum.photos/seed/nicholas/40/40" 
-              alt="Profile" 
-              className="w-10 h-10 rounded-xl object-cover ring-2 ring-gray-100 dark:ring-slate-800 group-hover:ring-teal-500/30 transition-all"
-            />
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-bold text-gray-800 dark:text-slate-200 truncate">Nicholas S</p>
-              <p className="text-xs text-gray-500 dark:text-slate-500 truncate">Admin Account</p>
-            </div>
-            <ChevronDown size={16} className="text-gray-400 dark:text-slate-600" />
+      </div>
+
+      {/* Fixed Footer Profile */}
+      <div className="p-4 border-t border-gray-100 dark:border-slate-800 shrink-0 bg-white dark:bg-slate-900">
+        <div className="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800 cursor-pointer transition-all group">
+          <img 
+            src="https://picsum.photos/seed/nicholas/40/40" 
+            alt="Profile" 
+            className="w-10 h-10 rounded-xl object-cover ring-2 ring-gray-100 dark:ring-slate-800 group-hover:ring-teal-500/30 transition-all"
+          />
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-bold text-gray-800 dark:text-slate-200 truncate">Nicholas S</p>
+            <p className="text-xs text-gray-500 dark:text-slate-500 truncate text-[10px] font-medium">Admin Account</p>
           </div>
+          <ChevronDown size={14} className="text-gray-400 dark:text-slate-600 group-hover:text-teal-600 transition-colors" />
         </div>
       </div>
     </aside>

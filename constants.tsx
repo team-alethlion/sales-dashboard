@@ -15,7 +15,8 @@ import {
   Receipt,
   Wallet,
   MessageSquare,
-  CheckSquare
+  CheckSquare,
+  Truck
 } from 'lucide-react';
 
 export const COLORS = {
@@ -34,6 +35,7 @@ export const NAVIGATION_ITEMS = [
   { id: 'customers', name: 'Customers', icon: <Users size={20} />, section: 'CORE' },
   { id: 'products', name: 'Products', icon: <Package size={20} />, section: 'CORE' },
   { id: 'inventory', name: 'Inventory', icon: <ClipboardList size={20} />, section: 'CORE' },
+  { id: 'carriage_inwards', name: 'Carriage', icon: <Truck size={20} />, section: 'CORE' },
   { id: 'transfer', name: 'Transfer', icon: <ArrowLeftRight size={20} />, section: 'CORE' },
   
   // BUSINESS

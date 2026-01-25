@@ -14,28 +14,23 @@ const PrinterPairing: React.FC = () => {
     setErrorMsg(null);
 
     try {
-      // Use the Web Bluetooth API to request a device
-      // Note: This requires HTTPS and user interaction (which this click provides)
-      // Fix: Access bluetooth property via type assertion to bypass Navigator interface limitations in TypeScript (line 19)
       if (!(navigator as any).bluetooth) {
-        throw new Error("Bluetooth not supported in this browser.");
+        throw new Error("Bluetooth not supported.");
       }
 
-      // Fix: Access bluetooth property via type assertion to bypass Navigator interface limitations in TypeScript (line 23)
       const device = await (navigator as any).bluetooth.requestDevice({
         filters: [{ services: ['printer'] }],
-        optionalServices: ['battery_service'] // Example optional service
+        optionalServices: ['battery_service']
       });
 
-      setDeviceName(device.name || 'Generic Printer');
+      setDeviceName(device.name || 'Thermal Printer');
       setStatus('connected');
     } catch (err: any) {
       console.error(err);
       if (err.name === 'NotFoundError') {
-        // User cancelled the picker
         setStatus('disconnected');
       } else {
-        setErrorMsg(err.message || 'Failed to pair device');
+        setErrorMsg(err.message || 'Failed to pair');
         setStatus('error');
       }
     }
@@ -47,84 +42,72 @@ const PrinterPairing: React.FC = () => {
   };
 
   return (
-    <div className="mx-3 mb-6 p-4 bg-gray-50 dark:bg-slate-800/50 rounded-2xl border border-gray-100 dark:border-slate-800 transition-all">
-      <div className="flex items-center justify-between mb-3">
+    <div className="w-full flex flex-col transition-all duration-300">
+      <div className="flex items-center justify-between mb-3 px-1">
         <div className="flex items-center gap-2">
           <div className={`p-1.5 rounded-lg ${
             status === 'connected' ? 'bg-teal-100 dark:bg-teal-900/30 text-teal-600' : 'bg-gray-100 dark:bg-slate-800 text-gray-400'
           }`}>
             <Printer size={14} />
           </div>
-          <span className="text-[10px] font-bold text-gray-400 dark:text-slate-500 uppercase tracking-widest">
+          <span className="text-[10px] font-black text-slate-700 dark:text-slate-300 uppercase tracking-widest">
             Hardware
           </span>
         </div>
         {status === 'connected' && (
-          <span className="flex items-center gap-1 text-[10px] font-bold text-teal-600 dark:text-teal-400">
-            <span className="w-1.5 h-1.5 rounded-full bg-teal-600 animate-pulse"></span>
-            ONLINE
-          </span>
+          <div className="flex items-center gap-1.5 bg-teal-50 dark:bg-teal-900/20 px-1.5 py-0.5 rounded-md">
+            <span className="w-1 h-1 rounded-full bg-teal-600 animate-pulse"></span>
+            <span className="text-[9px] font-black text-teal-600 uppercase">ON</span>
+          </div>
         )}
       </div>
 
       <div className="space-y-3">
         {status === 'disconnected' && (
-          <div>
-            <p className="text-xs text-gray-500 dark:text-slate-400 mb-3 leading-relaxed">
-              Connect a thermal printer to enable automated receipt printing.
-            </p>
-            <button
-              onClick={handlePair}
-              className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-slate-800 transition-all group"
-            >
-              <Bluetooth size={14} className="text-teal-600 group-hover:scale-110 transition-transform" />
-              Pair Printer
-            </button>
-          </div>
+          <button
+            onClick={handlePair}
+            className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-gray-50 dark:bg-slate-800 hover:bg-teal-600 hover:text-white dark:hover:bg-teal-700 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 transition-all border border-gray-100 dark:border-slate-700 group shadow-sm"
+          >
+            <Bluetooth size={14} className="group-hover:scale-110 transition-transform" />
+            Connect Printer
+          </button>
         )}
 
         {status === 'pairing' && (
-          <div className="flex flex-col items-center py-2">
-            <Loader2 size={24} className="text-teal-600 animate-spin mb-2" />
-            <p className="text-xs font-semibold text-slate-600 dark:text-slate-400">Searching for devices...</p>
+          <div className="flex items-center gap-3 px-3 py-2 bg-gray-50 dark:bg-slate-800 rounded-xl border border-gray-100 dark:border-slate-700">
+            <Loader2 size={14} className="text-teal-600 animate-spin" />
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Scanning...</span>
           </div>
         )}
 
         {status === 'connected' && (
           <div className="animate-in fade-in zoom-in-95 duration-300">
-            <div className="flex items-center gap-3 p-2 bg-white dark:bg-slate-900 rounded-xl border border-teal-100 dark:border-teal-900/20 mb-3">
-              <CheckCircle2 size={16} className="text-teal-600" />
-              <div className="flex-1 min-w-0">
-                <p className="text-[11px] font-bold text-slate-800 dark:text-slate-200 truncate">{deviceName}</p>
-                <p className="text-[10px] text-gray-400">Paired via Bluetooth</p>
+            <div className="px-3 py-2 bg-teal-50/50 dark:bg-teal-900/10 rounded-xl border border-teal-100/50 dark:border-teal-900/20 flex items-center gap-3 group">
+              <div className="w-6 h-6 bg-white dark:bg-slate-900 rounded-lg flex items-center justify-center shadow-sm text-teal-600">
+                <CheckCircle2 size={14} />
               </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-black text-slate-800 dark:text-slate-100 truncate uppercase">{deviceName}</p>
+              </div>
+              <button 
+                onClick={handleDisconnect}
+                className="opacity-0 group-hover:opacity-100 transition-opacity p-1 text-gray-400 hover:text-rose-500"
+                title="Disconnect"
+              >
+                <XCircle size={14} />
+              </button>
             </div>
-            <button
-              onClick={handleDisconnect}
-              className="w-full py-1.5 text-[10px] font-bold text-gray-400 hover:text-rose-500 transition-colors uppercase tracking-widest"
-            >
-              Disconnect
-            </button>
           </div>
         )}
 
         {status === 'error' && (
-          <div className="animate-in slide-in-from-bottom-2">
-            <div className="flex items-start gap-3 p-2 bg-rose-50 dark:bg-rose-900/10 rounded-xl border border-rose-100 dark:border-rose-900/20 mb-3">
-              <XCircle size={16} className="text-rose-500 shrink-0 mt-0.5" />
-              <div className="flex-1">
-                <p className="text-[11px] font-bold text-rose-700 dark:text-rose-400 leading-tight">Connection Failed</p>
-                <p className="text-[10px] text-rose-600/70 dark:text-rose-400/60 mt-0.5">{errorMsg}</p>
-              </div>
-            </div>
-            <button
-              onClick={handlePair}
-              className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-rose-500 text-white rounded-xl text-xs font-bold hover:bg-rose-600 transition-all"
-            >
-              <RefreshCw size={14} />
-              Try Again
-            </button>
-          </div>
+          <button
+            onClick={handlePair}
+            className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-rose-50 dark:bg-rose-900/20 text-rose-600 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-rose-100 transition-all border border-rose-100 dark:border-rose-900/30"
+          >
+            <RefreshCw size={12} />
+            Retry Link
+          </button>
         )}
       </div>
     </div>

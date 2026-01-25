@@ -11,13 +11,17 @@ import PerformanceCharts from './components/PerformanceCharts';
 import NewSalePage from './pages/NewSalePage';
 import CustomersPage from './pages/CustomersPage';
 import NewCustomerPage from './pages/NewCustomerPage';
+import ProductsPage from './pages/ProductsPage';
+import NewProductPage from './pages/NewProductPage';
+import InventoryPage from './pages/InventoryPage';
+import CarriageInwardsPage from './pages/CarriageInwardsPage';
 import { getDashboardInsights } from './services/geminiService';
 import { branchDatabase } from './data/branches';
 import { LayoutGrid } from 'lucide-react';
 
 const App: React.FC = () => {
   // --- STATE ---
-  const [currentView, setCurrentView] = useState<'dashboard' | 'sales' | 'new_sale' | 'customers' | 'new_customer'>('sales');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'sales' | 'new_sale' | 'customers' | 'new_customer' | 'products' | 'new_product' | 'inventory' | 'carriage_inwards'>('sales');
   const [aiInsights, setAiInsights] = useState<string | null>(null);
   const [loadingInsights, setLoadingInsights] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -101,6 +105,9 @@ const App: React.FC = () => {
     if (id === 'dashboard') setCurrentView('dashboard');
     if (id === 'sales') setCurrentView('sales');
     if (id === 'customers') setCurrentView('customers');
+    if (id === 'products') setCurrentView('products');
+    if (id === 'inventory') setCurrentView('inventory');
+    if (id === 'carriage_inwards') setCurrentView('carriage_inwards');
   };
 
   return (
@@ -170,6 +177,22 @@ const App: React.FC = () => {
 
         {currentView === 'customers' && (
           <CustomersPage onNewCustomer={() => setCurrentView('new_customer')} />
+        )}
+
+        {currentView === 'products' && (
+          <ProductsPage onNewProduct={() => setCurrentView('new_product')} />
+        )}
+
+        {currentView === 'inventory' && (
+          <InventoryPage onCarriageInwards={() => setCurrentView('carriage_inwards')} />
+        )}
+
+        {currentView === 'carriage_inwards' && (
+          <CarriageInwardsPage onBack={() => setCurrentView('inventory')} />
+        )}
+
+        {currentView === 'new_product' && (
+          <NewProductPage onBack={() => setCurrentView('products')} />
         )}
 
         {currentView === 'new_customer' && (
