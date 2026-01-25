@@ -146,7 +146,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate }) => {
               <p className="text-xs font-bold text-slate-700 dark:text-slate-300">Nairobi Hub #402</p>
            </div>
            <button 
-            onClick={() => onNavigate('sales')}
+            onClick={() => onNavigate('quick_pos')}
             className="group flex items-center gap-3 px-6 py-4 bg-slate-900 text-white dark:bg-white dark:text-slate-900 rounded-[1.5rem] font-black text-xs uppercase tracking-widest shadow-xl transition-all active:scale-95"
            >
              Quick POS Terminal <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />

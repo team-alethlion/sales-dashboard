@@ -9,6 +9,7 @@ import InsightsCard from './components/InsightsCard';
 import MetricStats from './components/MetricStats';
 import PerformanceCharts from './components/PerformanceCharts';
 import NewSalePage from './pages/NewSalePage';
+import QuickPOSPage from './pages/QuickPOSPage';
 import CustomersPage from './pages/CustomersPage';
 import NewCustomerPage from './pages/NewCustomerPage';
 import ProductsPage from './pages/ProductsPage';
@@ -32,7 +33,7 @@ import FormalQuotePage from './pages/FormalQuotePage';
 import { getDashboardInsights } from './services/geminiService';
 import { branchDatabase } from './data/branches';
 
-type ViewType = 'dashboard' | 'sales' | 'new_sale' | 'customers' | 'new_customer' | 'products' | 'new_product' | 'inventory' | 'carriage_inwards' | 'transfer' | 'expenses' | 'finance' | 'messaging' | 'tasks' | 'support' | 'support_all' | 'support_article' | 'settings' | 'issue_receipt' | 'invoice_hub' | 'credit_sale' | 'formal_quote';
+type ViewType = 'dashboard' | 'sales' | 'new_sale' | 'quick_pos' | 'customers' | 'new_customer' | 'products' | 'new_product' | 'inventory' | 'carriage_inwards' | 'transfer' | 'expenses' | 'finance' | 'messaging' | 'tasks' | 'support' | 'support_all' | 'support_article' | 'settings' | 'issue_receipt' | 'invoice_hub' | 'credit_sale' | 'formal_quote';
 
 const App: React.FC = () => {
   // --- STATE ---
@@ -250,6 +251,10 @@ const App: React.FC = () => {
 
         {currentView === 'new_sale' && (
           <NewSalePage onBack={() => setCurrentView('sales')} />
+        )}
+
+        {currentView === 'quick_pos' && (
+          <QuickPOSPage onBack={() => setCurrentView('dashboard')} />
         )}
 
         {currentView === 'issue_receipt' && (
