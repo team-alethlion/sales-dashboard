@@ -1,14 +1,14 @@
 
 import React from 'react';
-import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer, ReferenceDot } from 'recharts';
+import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { GROWTH_DATA, COLORS } from '../constants';
 
-const CustomTooltip = ({ active, payload }: any) => {
+const CustomTooltip = ({ active, payload, isDark }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-indigo-100 border border-indigo-200 px-4 py-2 rounded-xl shadow-lg">
-        <p className="text-[10px] text-indigo-400 font-bold uppercase">10 of September</p>
-        <p className="text-lg font-bold text-indigo-800">${payload[0].value.toLocaleString()}</p>
+      <div className={`${isDark ? 'bg-indigo-950/50 border-indigo-900/50' : 'bg-indigo-100 border-indigo-200'} border px-4 py-2 rounded-xl shadow-lg backdrop-blur-sm`}>
+        <p className={`text-[10px] ${isDark ? 'text-indigo-400' : 'text-indigo-400'} font-bold uppercase`}>10 of September</p>
+        <p className={`text-lg font-bold ${isDark ? 'text-indigo-100' : 'text-indigo-800'}`}>${payload[0].value.toLocaleString()}</p>
       </div>
     );
   }
@@ -16,6 +16,18 @@ const CustomTooltip = ({ active, payload }: any) => {
 };
 
 const GrowthChart: React.FC = () => {
+  const [isDark, setIsDark] = React.useState(document.documentElement.classList.contains('dark'));
+  
+  React.useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
+  const labelColor = isDark ? '#475569' : '#cbd5e1';
+
   return (
     <div className="h-64 w-full mt-4">
       <ResponsiveContainer width="100%" height="100%">
@@ -30,10 +42,10 @@ const GrowthChart: React.FC = () => {
             dataKey="year" 
             axisLine={false} 
             tickLine={false} 
-            tick={{ fill: '#cbd5e1', fontSize: 10 }}
+            tick={{ fill: labelColor, fontSize: 10 }}
             dy={10}
           />
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip content={<CustomTooltip isDark={isDark} />} />
           <Area 
             type="monotone" 
             dataKey="value" 
@@ -41,7 +53,7 @@ const GrowthChart: React.FC = () => {
             strokeWidth={3}
             fillOpacity={1} 
             fill="url(#colorValue)" 
-            dot={{ r: 4, fill: COLORS.primary, strokeWidth: 2, stroke: '#fff' }}
+            dot={{ r: 4, fill: COLORS.primary, strokeWidth: 2, stroke: isDark ? '#0f172a' : '#fff' }}
             activeDot={{ r: 6, strokeWidth: 0 }}
           />
         </AreaChart>

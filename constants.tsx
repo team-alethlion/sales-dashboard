@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { LayoutGrid, Store, Package, Users, Settings, HelpCircle } from 'lucide-react';
+import { LayoutGrid, Store, Package, Users, Settings, HelpCircle, Sparkles, Activity } from 'lucide-react';
 
 export const COLORS = {
   primary: '#0d9488', // teal-600
@@ -44,7 +44,6 @@ export const STORE_LOCATION_DATA = [
   { location: 'Airport', value: 13, label: '$13.0M' },
 ];
 
-// Added GROWTH_DATA to fix the import error in GrowthChart.tsx
 export const GROWTH_DATA = [
   { year: '2019', value: 12000 },
   { year: '2020', value: 15000 },
@@ -52,4 +51,12 @@ export const GROWTH_DATA = [
   { year: '2022', value: 24000 },
   { year: '2023', value: 32000 },
   { year: '2024', value: 37829 },
+];
+
+export const RECENT_ACTIVITY_DATA = [
+  { id: 1, type: 'user', content: 'Nicholas updated sales targets for Q3', time: '2 mins ago', color: 'bg-teal-500' },
+  { id: 2, type: 'ai', content: 'System generated new AI insights for May', time: '1 hour ago', color: 'bg-purple-500' },
+  { id: 3, type: 'store', content: 'Airport store reached its daily target', time: '3 hours ago', color: 'bg-amber-500' },
+  { id: 4, type: 'system', content: 'Monthly backup completed successfully', time: '5 hours ago', color: 'bg-blue-500' },
+  { id: 5, type: 'product', content: 'New inventory items added to Downtown', time: 'Yesterday', color: 'bg-rose-500' },
 ];
