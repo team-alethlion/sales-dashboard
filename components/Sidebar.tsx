@@ -4,11 +4,25 @@ import { Box, ChevronDown } from 'lucide-react';
 import { NAVIGATION_ITEMS } from '../constants';
 import PrinterPairing from './PrinterPairing';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  activeView: string;
+  onNavigate: (viewId: string) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ activeView, onNavigate }) => {
   const sections = ['CORE', 'BUSINESS', 'SYSTEM'];
 
+  // Determine if a specific item should be highlighted
+  const isItemActive = (itemId: string) => {
+    // Logic for nested views or sub-routes
+    if (itemId === 'sales' && (activeView === 'sales' || activeView === 'new_sale')) return true;
+    if (itemId === 'customers' && (activeView === 'customers' || activeView === 'new_customer')) return true;
+    if (itemId === 'dashboard' && activeView === 'dashboard') return true;
+    return activeView === itemId;
+  };
+
   return (
-    <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-100 dark:border-slate-800 flex flex-col h-full sticky top-0 overflow-hidden shrink-0 transition-colors duration-300">
+    <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-100 dark:border-slate-800 flex flex-col h-full sticky top-0 overflow-hidden shrink-0 transition-colors duration-300 z-20">
       {/* Fixed Header */}
       <div className="p-6 flex items-center gap-3 shrink-0">
         <div className="w-8 h-8 bg-teal-900 dark:bg-teal-700 rounded-lg flex items-center justify-center text-white">
@@ -25,22 +39,25 @@ const Sidebar: React.FC = () => {
               {section}
             </p>
             <div className="space-y-1">
-              {NAVIGATION_ITEMS.filter(item => item.section === section).map((item) => (
-                <a
-                  key={item.id}
-                  href="#"
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all ${
-                    item.id === 'sales' 
-                    ? 'bg-teal-700 text-white shadow-lg shadow-teal-900/10' 
-                    : 'text-gray-500 dark:text-slate-400 hover:bg-gray-50 dark:hover:bg-slate-800 hover:text-teal-700 dark:hover:text-teal-500'
-                  }`}
-                >
-                  <span className={`${item.id === 'sales' ? 'text-white' : 'text-inherit'}`}>
-                    {item.icon}
-                  </span>
-                  <span className="font-semibold text-sm">{item.name}</span>
-                </a>
-              ))}
+              {NAVIGATION_ITEMS.filter(item => item.section === section).map((item) => {
+                const active = isItemActive(item.id);
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => onNavigate(item.id)}
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all ${
+                      active 
+                      ? 'bg-teal-700 text-white shadow-lg shadow-teal-900/10' 
+                      : 'text-gray-500 dark:text-slate-400 hover:bg-gray-50 dark:hover:bg-slate-800 hover:text-teal-700 dark:hover:text-teal-500'
+                    }`}
+                  >
+                    <span className={`${active ? 'text-white' : 'text-inherit'}`}>
+                      {item.icon}
+                    </span>
+                    <span className="font-semibold text-sm">{item.name}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         ))}
