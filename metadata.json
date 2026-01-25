@@ -1,0 +1,5 @@
+{
+  "name": "sales dashboard",
+  "description": "A high-fidelity recreation of the Enelys sales analysis dashboard featuring real-time insights, interactive charts, and AI-powered data summaries using Gemini.",
+  "requestFramePermissions": []
+}
