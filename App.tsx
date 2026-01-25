@@ -15,13 +15,17 @@ import ProductsPage from './pages/ProductsPage';
 import NewProductPage from './pages/NewProductPage';
 import InventoryPage from './pages/InventoryPage';
 import CarriageInwardsPage from './pages/CarriageInwardsPage';
+import TransferPage from './pages/TransferPage';
+import ExpensesPage from './pages/ExpensesPage';
+import FinancePage from './pages/FinancePage';
+import MessagingPage from './pages/MessagingPage';
 import { getDashboardInsights } from './services/geminiService';
 import { branchDatabase } from './data/branches';
 import { LayoutGrid } from 'lucide-react';
 
 const App: React.FC = () => {
   // --- STATE ---
-  const [currentView, setCurrentView] = useState<'dashboard' | 'sales' | 'new_sale' | 'customers' | 'new_customer' | 'products' | 'new_product' | 'inventory' | 'carriage_inwards'>('sales');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'sales' | 'new_sale' | 'customers' | 'new_customer' | 'products' | 'new_product' | 'inventory' | 'carriage_inwards' | 'transfer' | 'expenses' | 'finance' | 'messaging'>('sales');
   const [aiInsights, setAiInsights] = useState<string | null>(null);
   const [loadingInsights, setLoadingInsights] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -102,12 +106,10 @@ const App: React.FC = () => {
   };
 
   const handleSidebarNavigate = (id: string) => {
-    if (id === 'dashboard') setCurrentView('dashboard');
-    if (id === 'sales') setCurrentView('sales');
-    if (id === 'customers') setCurrentView('customers');
-    if (id === 'products') setCurrentView('products');
-    if (id === 'inventory') setCurrentView('inventory');
-    if (id === 'carriage_inwards') setCurrentView('carriage_inwards');
+    const validViews = ['dashboard', 'sales', 'customers', 'products', 'inventory', 'carriage_inwards', 'transfer', 'expenses', 'finance', 'messaging'];
+    if (validViews.includes(id)) {
+      setCurrentView(id as any);
+    }
   };
 
   return (
@@ -189,6 +191,22 @@ const App: React.FC = () => {
 
         {currentView === 'carriage_inwards' && (
           <CarriageInwardsPage onBack={() => setCurrentView('inventory')} />
+        )}
+
+        {currentView === 'transfer' && (
+          <TransferPage />
+        )}
+
+        {currentView === 'expenses' && (
+          <ExpensesPage />
+        )}
+
+        {currentView === 'finance' && (
+          <FinancePage />
+        )}
+
+        {currentView === 'messaging' && (
+          <MessagingPage />
         )}
 
         {currentView === 'new_product' && (
