@@ -19,13 +19,24 @@ import TransferPage from './pages/TransferPage';
 import ExpensesPage from './pages/ExpensesPage';
 import FinancePage from './pages/FinancePage';
 import MessagingPage from './pages/MessagingPage';
+import TasksPage from './pages/TasksPage';
+import SupportPage from './pages/SupportPage';
+import SupportAllArticlesPage from './pages/SupportAllArticlesPage';
+import SupportArticleViewPage from './pages/SupportArticleViewPage';
+import SettingsPage from './pages/SettingsPage';
+import DashboardPage from './pages/DashboardPage';
+import IssueReceiptPage from './pages/IssueReceiptPage';
+import InvoiceHubPage from './pages/InvoiceHubPage';
+import CreditSalePage from './pages/CreditSalePage';
+import FormalQuotePage from './pages/FormalQuotePage';
 import { getDashboardInsights } from './services/geminiService';
 import { branchDatabase } from './data/branches';
-import { LayoutGrid } from 'lucide-react';
+
+type ViewType = 'dashboard' | 'sales' | 'new_sale' | 'customers' | 'new_customer' | 'products' | 'new_product' | 'inventory' | 'carriage_inwards' | 'transfer' | 'expenses' | 'finance' | 'messaging' | 'tasks' | 'support' | 'support_all' | 'support_article' | 'settings' | 'issue_receipt' | 'invoice_hub' | 'credit_sale' | 'formal_quote';
 
 const App: React.FC = () => {
   // --- STATE ---
-  const [currentView, setCurrentView] = useState<'dashboard' | 'sales' | 'new_sale' | 'customers' | 'new_customer' | 'products' | 'new_product' | 'inventory' | 'carriage_inwards' | 'transfer' | 'expenses' | 'finance' | 'messaging'>('sales');
+  const [currentView, setCurrentView] = useState<ViewType>('dashboard');
   const [aiInsights, setAiInsights] = useState<string | null>(null);
   const [loadingInsights, setLoadingInsights] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -106,7 +117,7 @@ const App: React.FC = () => {
   };
 
   const handleSidebarNavigate = (id: string) => {
-    const validViews = ['dashboard', 'sales', 'customers', 'products', 'inventory', 'carriage_inwards', 'transfer', 'expenses', 'finance', 'messaging'];
+    const validViews = ['dashboard', 'sales', 'customers', 'products', 'inventory', 'carriage_inwards', 'transfer', 'expenses', 'finance', 'messaging', 'tasks', 'support', 'settings'];
     if (validViews.includes(id)) {
       setCurrentView(id as any);
     }
@@ -119,13 +130,7 @@ const App: React.FC = () => {
 
       <main className="flex-1 overflow-y-auto p-8 scroll-smooth">
         {currentView === 'dashboard' && (
-          <div className="h-full flex flex-col items-center justify-center animate-in fade-in zoom-in-95 duration-500">
-            <div className="w-20 h-20 bg-white dark:bg-slate-900 rounded-3xl shadow-xl flex items-center justify-center mb-6 border border-gray-100 dark:border-slate-800">
-              <LayoutGrid size={40} className="text-teal-600" />
-            </div>
-            <h1 className="text-4xl font-black text-slate-800 dark:text-slate-100 tracking-tighter uppercase italic">Dashboard</h1>
-            <p className="text-gray-400 dark:text-slate-500 mt-2 font-bold tracking-widest text-xs uppercase">System Overview Placeholder</p>
-          </div>
+          <DashboardPage onNavigate={setCurrentView as any} />
         )}
 
         {currentView === 'sales' && (
@@ -209,6 +214,32 @@ const App: React.FC = () => {
           <MessagingPage />
         )}
 
+        {currentView === 'tasks' && (
+          <TasksPage />
+        )}
+
+        {currentView === 'support' && (
+          <SupportPage 
+            onViewAllArticles={() => setCurrentView('support_all')}
+            onViewArticle={() => setCurrentView('support_article')}
+          />
+        )}
+
+        {currentView === 'support_all' && (
+          <SupportAllArticlesPage 
+            onBack={() => setCurrentView('support')} 
+            onViewArticle={() => setCurrentView('support_article')}
+          />
+        )}
+
+        {currentView === 'support_article' && (
+          <SupportArticleViewPage onBack={() => setCurrentView('support_all')} />
+        )}
+
+        {currentView === 'settings' && (
+          <SettingsPage />
+        )}
+
         {currentView === 'new_product' && (
           <NewProductPage onBack={() => setCurrentView('products')} />
         )}
@@ -219,6 +250,22 @@ const App: React.FC = () => {
 
         {currentView === 'new_sale' && (
           <NewSalePage onBack={() => setCurrentView('sales')} />
+        )}
+
+        {currentView === 'issue_receipt' && (
+          <IssueReceiptPage onBack={() => setCurrentView('dashboard')} />
+        )}
+
+        {currentView === 'invoice_hub' && (
+          <InvoiceHubPage onBack={() => setCurrentView('dashboard')} />
+        )}
+
+        {currentView === 'credit_sale' && (
+          <CreditSalePage onBack={() => setCurrentView('dashboard')} />
+        )}
+
+        {currentView === 'formal_quote' && (
+          <FormalQuotePage onBack={() => setCurrentView('dashboard')} />
         )}
       </main>
     </div>
