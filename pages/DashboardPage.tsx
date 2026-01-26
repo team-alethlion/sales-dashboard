@@ -365,7 +365,10 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate }) => {
               ))}
            </div>
 
-           <button className="w-full py-4 bg-gray-50 dark:bg-slate-800 text-gray-400 dark:text-slate-500 rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.2em] hover:text-teal-600 transition-all border border-transparent hover:border-teal-100">
+           <button 
+            onClick={() => onNavigate('team_permissions')}
+            className="w-full py-4 bg-gray-50 dark:bg-slate-800 text-gray-400 dark:text-slate-500 rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.2em] hover:text-teal-600 transition-all border border-transparent hover:border-teal-100"
+           >
              Manage Team Permissions
            </button>
         </div>

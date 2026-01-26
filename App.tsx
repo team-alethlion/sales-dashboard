@@ -1,6 +1,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
+import BottomNav from './components/BottomNav';
 import ActivityFeed from './components/ActivityFeed';
 import GlobalSearchModal from './components/GlobalSearchModal';
 import DashboardHeader from './components/DashboardHeader';
@@ -30,14 +31,16 @@ import IssueReceiptPage from './pages/IssueReceiptPage';
 import InvoiceHubPage from './pages/InvoiceHubPage';
 import CreditSalePage from './pages/CreditSalePage';
 import FormalQuotePage from './pages/FormalQuotePage';
+import TeamPermissionsPage from './pages/TeamPermissionsPage';
 import { getDashboardInsights } from './services/geminiService';
 import { branchDatabase } from './data/branches';
 
-type ViewType = 'dashboard' | 'sales' | 'new_sale' | 'quick_pos' | 'customers' | 'new_customer' | 'products' | 'new_product' | 'inventory' | 'carriage_inwards' | 'transfer' | 'expenses' | 'finance' | 'messaging' | 'tasks' | 'support' | 'support_all' | 'support_article' | 'settings' | 'issue_receipt' | 'invoice_hub' | 'credit_sale' | 'formal_quote';
+type ViewType = 'dashboard' | 'sales' | 'new_sale' | 'quick_pos' | 'customers' | 'new_customer' | 'products' | 'new_product' | 'inventory' | 'carriage_inwards' | 'transfer' | 'expenses' | 'finance' | 'messaging' | 'tasks' | 'support' | 'support_all' | 'support_article' | 'settings' | 'issue_receipt' | 'invoice_hub' | 'credit_sale' | 'formal_quote' | 'team_permissions';
 
 const App: React.FC = () => {
   // --- STATE ---
   const [currentView, setCurrentView] = useState<ViewType>('dashboard');
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [aiInsights, setAiInsights] = useState<string | null>(null);
   const [loadingInsights, setLoadingInsights] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -118,7 +121,7 @@ const App: React.FC = () => {
   };
 
   const handleSidebarNavigate = (id: string) => {
-    const validViews = ['dashboard', 'sales', 'customers', 'products', 'inventory', 'carriage_inwards', 'transfer', 'expenses', 'finance', 'messaging', 'tasks', 'support', 'settings'];
+    const validViews = ['dashboard', 'sales', 'customers', 'products', 'inventory', 'carriage_inwards', 'transfer', 'expenses', 'finance', 'messaging', 'tasks', 'support', 'settings', 'quick_pos', 'team_permissions'];
     if (validViews.includes(id)) {
       setCurrentView(id as any);
     }
@@ -126,10 +129,20 @@ const App: React.FC = () => {
 
   return (
     <div className="flex h-screen bg-[#f3f4f6] dark:bg-slate-950 text-slate-700 dark:text-slate-300 overflow-hidden transition-colors duration-300">
-      <Sidebar activeView={currentView} onNavigate={handleSidebarNavigate} />
+      {/* Sidebar: Only on Large Screens */}
+      <div className="hidden lg:flex h-full">
+        <Sidebar 
+          activeView={currentView} 
+          onNavigate={handleSidebarNavigate} 
+          isCollapsed={isSidebarCollapsed}
+          onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+        />
+      </div>
+
       <GlobalSearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
-      <main className="flex-1 overflow-y-auto p-8 scroll-smooth">
+      {/* Main Content Area: Padding for Bottom Nav on Mobile */}
+      <main className="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth pb-24 lg:pb-8">
         {currentView === 'dashboard' && (
           <DashboardPage onNavigate={setCurrentView as any} />
         )}
@@ -272,7 +285,14 @@ const App: React.FC = () => {
         {currentView === 'formal_quote' && (
           <FormalQuotePage onBack={() => setCurrentView('dashboard')} />
         )}
+
+        {currentView === 'team_permissions' && (
+          <TeamPermissionsPage onBack={() => setCurrentView('dashboard')} />
+        )}
       </main>
+
+      {/* Bottom Nav: Only on Small Screens */}
+      <BottomNav activeView={currentView} onNavigate={handleSidebarNavigate} />
     </div>
   );
 };

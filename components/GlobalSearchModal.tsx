@@ -40,94 +40,103 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
   ];
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4 sm:px-6">
-      {/* Backdrop */}
+    <div className="fixed inset-0 z-[100] flex items-start justify-center sm:pt-[15vh] overflow-hidden">
+      {/* Backdrop - Hidden on smallest mobile screens for full-screen feel */}
       <div 
-        className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-300"
+        className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-300 hidden sm:block"
         onClick={onClose}
       />
       
       {/* Modal Content */}
-      <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-800 overflow-hidden animate-in zoom-in-95 slide-in-from-top-4 duration-300">
-        <div className="flex items-center px-4 py-4 border-b border-gray-50 dark:border-slate-800">
-          <Search size={20} className="text-gray-400 mr-3" />
+      <div className="relative w-full h-full sm:h-auto sm:max-w-2xl bg-white dark:bg-slate-900 rounded-none sm:rounded-[2.5rem] shadow-2xl border-none sm:border border-gray-100 dark:border-slate-800 flex flex-col overflow-hidden animate-in sm:zoom-in-95 sm:slide-in-from-top-4 duration-300">
+        <div className="flex items-center px-6 py-5 border-b border-gray-50 dark:border-slate-800 bg-white dark:bg-slate-900 shrink-0">
+          <Search size={22} className="text-teal-600 mr-4" />
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search for reports, customers, branches..."
-            className="flex-1 bg-transparent border-none focus:ring-0 text-slate-800 dark:text-slate-100 placeholder-gray-400 text-lg"
+            placeholder="Search anything..."
+            className="flex-1 bg-transparent border-none focus:ring-0 text-slate-800 dark:text-slate-100 placeholder-gray-400 text-lg font-bold"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <div className="flex items-center gap-2">
-            <kbd className="hidden sm:flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-bold text-gray-400 bg-gray-50 dark:bg-slate-800 rounded border border-gray-200 dark:border-slate-700 uppercase">
+          <div className="flex items-center gap-3">
+            <kbd className="hidden sm:flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-black text-gray-400 bg-gray-50 dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 uppercase tracking-widest">
               ESC
             </kbd>
-            <button onClick={onClose} className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
-              <X size={20} />
+            <button 
+              onClick={onClose} 
+              className="p-2.5 bg-gray-50 dark:bg-slate-800 text-gray-400 rounded-xl hover:text-rose-500 transition-colors shadow-sm"
+            >
+              <X size={22} />
             </button>
           </div>
         </div>
 
-        <div className="p-4 max-h-[60vh] overflow-y-auto">
+        <div className="flex-1 p-6 overflow-y-auto no-scrollbar">
           {query.length === 0 ? (
-            <div className="space-y-6">
+            <div className="space-y-10">
               <div>
-                <h3 className="text-[10px] font-bold text-gray-400 dark:text-slate-500 uppercase tracking-widest px-2 mb-3">Quick Actions</h3>
-                <div className="grid grid-cols-1 gap-1">
+                <h3 className="text-[10px] font-black text-gray-400 dark:text-slate-500 uppercase tracking-[0.3em] px-2 mb-4">Immediate Actions</h3>
+                <div className="grid grid-cols-1 gap-2">
                   {quickActions.map((action, idx) => (
                     <button
                       key={idx}
-                      className="group flex items-center justify-between p-3 rounded-xl hover:bg-teal-50 dark:hover:bg-teal-900/20 text-slate-700 dark:text-slate-300 transition-all text-left"
+                      className="group flex items-center justify-between p-4 rounded-2xl hover:bg-teal-50 dark:hover:bg-teal-900/20 text-slate-700 dark:text-slate-300 transition-all text-left border border-transparent hover:border-teal-100 dark:hover:border-teal-800"
                     >
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 bg-gray-50 dark:bg-slate-800 rounded-lg group-hover:bg-white dark:group-hover:bg-slate-900 group-hover:text-teal-600 transition-colors shadow-sm">
+                      <div className="flex items-center gap-4">
+                        <div className="p-3 bg-gray-50 dark:bg-slate-800 rounded-xl group-hover:bg-white dark:group-hover:bg-slate-900 group-hover:text-teal-600 transition-all shadow-sm">
                           {action.icon}
                         </div>
-                        <span className="text-sm font-semibold">{action.label}</span>
+                        <span className="text-sm font-black uppercase tracking-widest">{action.label}</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                         <kbd className="hidden sm:flex px-1.5 py-0.5 text-[10px] font-bold text-gray-400 bg-gray-50 dark:bg-slate-800 rounded border border-gray-200 dark:border-slate-700">
+                      <div className="flex items-center gap-3">
+                         <kbd className="hidden sm:flex px-2 py-0.5 text-[10px] font-black text-gray-300 bg-gray-50 dark:bg-slate-800 rounded-md border border-gray-100 dark:border-slate-700">
                           {action.shortcut}
                         </kbd>
-                        <ArrowRight size={14} className="text-gray-300 group-hover:text-teal-500 transform group-hover:translate-x-1 transition-all" />
+                        <ArrowRight size={16} className="text-gray-300 group-hover:text-teal-500 transform group-hover:translate-x-1 transition-all" />
                       </div>
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div className="bg-gray-50 dark:bg-slate-800/50 p-4 rounded-xl">
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-teal-100 dark:bg-teal-900/30 text-teal-600 rounded-lg">
-                    <Command size={16} />
+              <div className="bg-slate-900 dark:bg-teal-950/20 p-8 rounded-[2rem] relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-4 opacity-5 rotate-12 group-hover:scale-110 transition-transform">
+                   <Command size={100} className="text-white" />
+                </div>
+                <div className="flex items-start gap-4 relative z-10">
+                  <div className="p-3 bg-teal-500 text-white rounded-xl shadow-lg">
+                    <Command size={20} />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-slate-800 dark:text-slate-200">Pro Tip</h4>
-                    <p className="text-xs text-gray-500 dark:text-slate-400 mt-1 leading-relaxed">
-                      Use shortcuts to navigate even faster. Press <code className="px-1 py-0.5 bg-gray-200 dark:bg-slate-700 rounded text-[10px]">Cmd + K</code> anytime to open this search.
+                    <h4 className="text-sm font-black text-white uppercase tracking-widest">Power User Tip</h4>
+                    <p className="text-xs text-slate-400 mt-2 leading-relaxed font-medium">
+                      Press <code className="px-1.5 py-0.5 bg-slate-800 rounded text-teal-400 font-bold mx-1">⌘K</code> to invoke search globally.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <div className="w-12 h-12 bg-gray-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-gray-400 mb-4 animate-pulse">
-                <Search size={24} />
+            <div className="flex flex-col items-center justify-center py-20 text-center animate-in fade-in zoom-in-95">
+              <div className="w-20 h-20 bg-gray-50 dark:bg-slate-800 rounded-3xl flex items-center justify-center text-teal-600 mb-6 shadow-inner animate-pulse">
+                <Search size={32} />
               </div>
-              <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200">Searching for "{query}"...</h3>
-              <p className="text-xs text-gray-500 dark:text-slate-400 mt-2 max-w-[240px]">We're looking through your branches, reports, and team members.</p>
+              <h3 className="text-lg font-black text-slate-800 dark:text-slate-100 tracking-tight">Locating "{query}"...</h3>
+              <p className="text-xs text-gray-400 dark:text-slate-500 mt-2 max-w-[280px] font-medium uppercase tracking-widest">Scouring registries, reports, and network nodes</p>
             </div>
           )}
         </div>
 
-        <div className="bg-gray-50 dark:bg-slate-800/30 px-4 py-3 flex items-center justify-between text-[10px] text-gray-400 font-bold uppercase tracking-wider">
-          <div className="flex gap-4">
-            <span className="flex items-center gap-1.5"><span className="px-1 py-0.5 bg-white dark:bg-slate-900 rounded border border-gray-200 dark:border-slate-700 shadow-xs text-slate-500">↵</span> Select</span>
-            <span className="flex items-center gap-1.5"><span className="px-1 py-0.5 bg-white dark:bg-slate-900 rounded border border-gray-200 dark:border-slate-700 shadow-xs text-slate-500">↑↓</span> Navigate</span>
+        <div className="bg-gray-50 dark:bg-slate-800/50 px-6 py-4 flex items-center justify-between text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] shrink-0 border-t sm:border-none">
+          <div className="hidden sm:flex gap-6">
+            <span className="flex items-center gap-2"><span className="px-1.5 py-0.5 bg-white dark:bg-slate-900 rounded border border-gray-200 dark:border-slate-700 shadow-sm text-slate-500">↵</span> Select</span>
+            <span className="flex items-center gap-2"><span className="px-1.5 py-0.5 bg-white dark:bg-slate-900 rounded border border-gray-200 dark:border-slate-700 shadow-sm text-slate-500">↑↓</span> Navigate</span>
           </div>
-          <span className="text-teal-600/60">Powered by Code8 Search</span>
+          <div className="sm:hidden flex gap-4">
+             <span>Tap to result</span>
+          </div>
+          <span className="text-teal-600">Secure Core Search</span>
         </div>
       </div>
     </div>

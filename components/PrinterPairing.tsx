@@ -4,7 +4,11 @@ import { Bluetooth, Printer, Loader2, CheckCircle2, XCircle, RefreshCw } from 'l
 
 type PrinterStatus = 'disconnected' | 'pairing' | 'connected' | 'error';
 
-const PrinterPairing: React.FC = () => {
+interface PrinterPairingProps {
+  isCollapsed?: boolean;
+}
+
+const PrinterPairing: React.FC<PrinterPairingProps> = ({ isCollapsed = false }) => {
   const [status, setStatus] = useState<PrinterStatus>('disconnected');
   const [deviceName, setDeviceName] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -40,6 +44,37 @@ const PrinterPairing: React.FC = () => {
     setStatus('disconnected');
     setDeviceName(null);
   };
+
+  if (isCollapsed) {
+    return (
+      <div className="flex justify-center">
+        <button
+          onClick={status === 'connected' ? handleDisconnect : handlePair}
+          title={status === 'connected' ? `Disconnect ${deviceName}` : "Connect Printer"}
+          className={`p-2.5 rounded-xl border transition-all relative ${
+            status === 'connected' 
+              ? 'bg-teal-50 dark:bg-teal-900/30 text-teal-600 border-teal-100 dark:border-teal-900/50' 
+              : status === 'error'
+              ? 'bg-rose-50 dark:bg-rose-900/30 text-rose-600 border-rose-100 dark:border-rose-900/50'
+              : 'bg-gray-50 dark:bg-slate-800 text-gray-400 border-gray-100 dark:border-slate-700'
+          }`}
+        >
+          {status === 'pairing' ? (
+            <Loader2 size={18} className="animate-spin" />
+          ) : status === 'connected' ? (
+            <CheckCircle2 size={18} />
+          ) : status === 'error' ? (
+            <RefreshCw size={18} />
+          ) : (
+            <Printer size={18} />
+          )}
+          {status === 'connected' && (
+            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-teal-500 rounded-full border-2 border-white dark:border-slate-900 animate-pulse" />
+          )}
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col transition-all duration-300">

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 // Added ArrowRight to the imports from lucide-react
 import { 
@@ -124,7 +123,8 @@ const SettingsPage: React.FC = () => {
   };
 
   // --- SUB-COMPONENTS ---
-  const SidebarItem = ({ id, label, icon: Icon }: { id: SettingsTab, label: string, icon: any }) => (
+  // Fixed: Added React.FC type for proper functional component declaration
+  const SidebarItem: React.FC<{ id: SettingsTab, label: string, icon: any }> = ({ id, label, icon: Icon }) => (
     <button
       onClick={() => setActiveTab(id)}
       className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-black uppercase tracking-widest transition-all ${
@@ -138,7 +138,8 @@ const SettingsPage: React.FC = () => {
     </button>
   );
 
-  const FormSection = ({ title, desc, children }: { title: string, desc: string, children: React.ReactNode }) => (
+  // Fixed: Use React.FC to properly handle children and avoid TypeScript "missing children" errors
+  const FormSection: React.FC<{ title: string, desc: string, children: React.ReactNode }> = ({ title, desc, children }) => (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div>
         <h3 className="text-xl font-black text-slate-800 dark:text-slate-100 tracking-tight">{title}</h3>
