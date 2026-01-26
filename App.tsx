@@ -13,6 +13,8 @@ import NewSalePage from './pages/NewSalePage';
 import QuickPOSPage from './pages/QuickPOSPage';
 import CustomersPage from './pages/CustomersPage';
 import NewCustomerPage from './pages/NewCustomerPage';
+import CustomerProfilePage from './pages/CustomerProfilePage';
+import CustomerHistoryPage from './pages/CustomerHistoryPage';
 import ProductsPage from './pages/ProductsPage';
 import NewProductPage from './pages/NewProductPage';
 import InventoryPage from './pages/InventoryPage';
@@ -32,14 +34,19 @@ import InvoiceHubPage from './pages/InvoiceHubPage';
 import CreditSalePage from './pages/CreditSalePage';
 import FormalQuotePage from './pages/FormalQuotePage';
 import TeamPermissionsPage from './pages/TeamPermissionsPage';
+import TopSellingReportPage from './pages/TopSellingReportPage';
+import ProductPerformancePage from './pages/ProductPerformancePage';
+import AuditFullLedgerPage from './pages/AuditFullLedgerPage';
 import { getDashboardInsights } from './services/geminiService';
 import { branchDatabase } from './data/branches';
 
-type ViewType = 'dashboard' | 'sales' | 'new_sale' | 'quick_pos' | 'customers' | 'new_customer' | 'products' | 'new_product' | 'inventory' | 'carriage_inwards' | 'transfer' | 'expenses' | 'finance' | 'messaging' | 'tasks' | 'support' | 'support_all' | 'support_article' | 'settings' | 'issue_receipt' | 'invoice_hub' | 'credit_sale' | 'formal_quote' | 'team_permissions';
+type ViewType = 'dashboard' | 'sales' | 'new_sale' | 'quick_pos' | 'customers' | 'new_customer' | 'customer_profile' | 'customer_history' | 'products' | 'new_product' | 'inventory' | 'carriage_inwards' | 'transfer' | 'expenses' | 'finance' | 'messaging' | 'tasks' | 'support' | 'support_all' | 'support_article' | 'settings' | 'issue_receipt' | 'invoice_hub' | 'credit_sale' | 'formal_quote' | 'team_permissions' | 'top_selling_report' | 'product_performance' | 'audit_full_ledger';
 
 const App: React.FC = () => {
   // --- STATE ---
   const [currentView, setCurrentView] = useState<ViewType>('dashboard');
+  const [selectedCustomerId, setSelectedCustomerId] = useState<string | null>(null);
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [aiInsights, setAiInsights] = useState<string | null>(null);
   const [loadingInsights, setLoadingInsights] = useState(false);
@@ -127,6 +134,26 @@ const App: React.FC = () => {
     }
   };
 
+  const navigateToCustomerProfile = (id: string) => {
+    setSelectedCustomerId(id);
+    setCurrentView('customer_profile');
+  };
+
+  const navigateToCustomerHistory = (id: string) => {
+    setSelectedCustomerId(id);
+    setCurrentView('customer_history');
+  };
+
+  const navigateToProductDetail = (id: string) => {
+    setSelectedProductId(id);
+    setCurrentView('product_performance');
+  };
+
+  const navigateToFullLedger = (id: string) => {
+    setSelectedProductId(id);
+    setCurrentView('audit_full_ledger');
+  };
+
   return (
     <div className="flex h-screen bg-[#f3f4f6] dark:bg-slate-950 text-slate-700 dark:text-slate-300 overflow-hidden transition-colors duration-300">
       {/* Sidebar: Only on Large Screens */}
@@ -197,7 +224,26 @@ const App: React.FC = () => {
         )}
 
         {currentView === 'customers' && (
-          <CustomersPage onNewCustomer={() => setCurrentView('new_customer')} />
+          <CustomersPage 
+            onNewCustomer={() => setCurrentView('new_customer')}
+            onViewProfile={navigateToCustomerProfile}
+            onViewHistory={navigateToCustomerHistory}
+          />
+        )}
+
+        {currentView === 'customer_profile' && (
+          <CustomerProfilePage 
+            customerId={selectedCustomerId} 
+            onBack={() => setCurrentView('customers')} 
+            onViewHistory={navigateToCustomerHistory}
+          />
+        )}
+
+        {currentView === 'customer_history' && (
+          <CustomerHistoryPage 
+            customerId={selectedCustomerId} 
+            onBack={() => setCurrentView('customers')} 
+          />
         )}
 
         {currentView === 'products' && (
@@ -205,7 +251,33 @@ const App: React.FC = () => {
         )}
 
         {currentView === 'inventory' && (
-          <InventoryPage onCarriageInwards={() => setCurrentView('carriage_inwards')} />
+          <InventoryPage 
+            onCarriageInwards={() => setCurrentView('carriage_inwards')} 
+            onViewFullReport={() => setCurrentView('top_selling_report')}
+            onViewProduct={navigateToProductDetail}
+          />
+        )}
+
+        {currentView === 'top_selling_report' && (
+          <TopSellingReportPage 
+            onBack={() => setCurrentView('inventory')} 
+            onViewProduct={navigateToProductDetail}
+          />
+        )}
+
+        {currentView === 'product_performance' && (
+          <ProductPerformancePage 
+            productId={selectedProductId} 
+            onBack={() => setCurrentView('inventory')} 
+            onViewLedger={() => setCurrentView('audit_full_ledger')}
+          />
+        )}
+
+        {currentView === 'audit_full_ledger' && (
+          <AuditFullLedgerPage 
+            productId={selectedProductId}
+            onBack={() => setCurrentView('product_performance')}
+          />
         )}
 
         {currentView === 'carriage_inwards' && (
