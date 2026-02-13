@@ -138,7 +138,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
       <div className="flex items-center gap-4 mb-8">
         <button 
           onClick={onBack}
-          className="p-2.5 bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-xl text-gray-500 hover:text-teal-600 dark:hover:text-teal-400 transition-all shadow-sm"
+          className="p-2.5 bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-lg text-gray-500 hover:text-teal-600 dark:hover:text-teal-400 transition-all shadow-sm"
         >
           <ArrowLeft size={20} />
         </button>
@@ -153,7 +153,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
         <div className="lg:col-span-7 space-y-6">
           
           {/* 1. Add Products Section */}
-          <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm">
+          <section className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm">
             <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <Plus size={14} className="text-teal-600" />
               1. Add Products
@@ -168,7 +168,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
                     value={productQuery}
                     onChange={(e) => setProductQuery(e.target.value)}
                     placeholder="Search or enter new product..."
-                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium"
                   />
                 </div>
                 {productQuery && filteredProducts.length > 0 && (
@@ -193,13 +193,13 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
                   value={productPrice}
                   onChange={(e) => setProductPrice(e.target.value)}
                   placeholder="0.00"
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold text-teal-600"
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold text-teal-600"
                 />
               </div>
               <div className="md:col-span-2 flex items-end">
                 <button 
                   onClick={handleAddProduct}
-                  className="w-full py-3 bg-teal-600 text-white rounded-xl font-bold hover:bg-teal-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-teal-900/10"
+                  className="w-full py-3 bg-teal-600 text-white rounded-lg font-bold hover:bg-teal-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-teal-900/10"
                 >
                   <Plus size={18} />
                   ADD
@@ -209,7 +209,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
           </section>
 
           {/* 2. Customer Information */}
-          <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm">
+          <section className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm">
             <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <User size={14} className="text-teal-600" />
               2. Customer Details
@@ -224,7 +224,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
                     value={customerQuery}
                     onChange={(e) => setCustomerQuery(e.target.value)}
                     placeholder="Existing or new customer..."
-                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium"
                   />
                 </div>
                 {customerQuery && filteredCustomers.length > 0 && (
@@ -255,7 +255,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
                     type="text"
                     value={customerPhone}
                     onChange={(e) => setCustomerPhone(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm"
                     placeholder="+254..."
                   />
                 </div>
@@ -266,7 +266,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
                     type="text"
                     value={customerAddress}
                     onChange={(e) => setCustomerAddress(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm"
                     placeholder="Street, City..."
                   />
                 </div>
@@ -275,7 +275,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
           </section>
 
           {/* 3. Sale Info */}
-          <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm">
+          <section className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm">
             <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <Tag size={14} className="text-teal-600" />
               3. Sale Configuration
@@ -305,7 +305,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
                     type="number"
                     value={taxRate}
                     onChange={(e) => setTaxRate(parseFloat(e.target.value) || 0)}
-                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold"
+                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold"
                   />
                 </div>
               </div>
@@ -314,7 +314,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
                 <select 
                   value={paymentStatus}
                   onChange={(e) => setPaymentStatus(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold appearance-none cursor-pointer"
+                  className="w-full px-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold appearance-none cursor-pointer"
                 >
                   {['Unpaid', 'Quote (No Stock Deduction)', 'Installment', 'Partial'].map(st => (
                     <option key={st} value={st}>{st}</option>
@@ -326,7 +326,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
                 <select 
                   value={cashAccount}
                   onChange={(e) => setCashAccount(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold appearance-none cursor-pointer"
+                  className="w-full px-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold appearance-none cursor-pointer"
                 >
                   <option>No Account (General)</option>
                   <option>Main Petty Cash</option>
@@ -342,7 +342,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
         <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-8">
           
           {/* Cart Items */}
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm flex flex-col min-h-[400px]">
+          <div className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm flex flex-col min-h-[400px]">
             <div className="flex items-center justify-between mb-6">
               <h3 className="font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
                 <ShoppingBag size={20} className="text-teal-600" />
@@ -361,12 +361,12 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
                 </div>
               ) : (
                 cart.map(item => (
-                  <div key={item.product.id} className="flex items-center gap-4 bg-gray-50 dark:bg-slate-800/50 p-3 rounded-2xl group transition-all hover:bg-white dark:hover:bg-slate-800 hover:shadow-sm">
+                  <div key={item.product.id} className="flex items-center gap-4 bg-gray-50 dark:bg-slate-800/50 p-3 rounded-lg group transition-all hover:bg-white dark:hover:bg-slate-800 hover:shadow-sm">
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-bold text-slate-800 dark:text-slate-100 truncate">{item.product.name}</p>
                       <p className="text-[10px] text-teal-600 font-bold">${item.product.price.toFixed(2)} / unit</p>
                     </div>
-                    <div className="flex items-center gap-2 bg-white dark:bg-slate-900 rounded-xl px-2 py-1 shadow-sm border border-gray-50 dark:border-slate-800">
+                    <div className="flex items-center gap-2 bg-white dark:bg-slate-900 rounded-lg px-2 py-1 shadow-sm border border-gray-50 dark:border-slate-800">
                       <button onClick={() => updateQuantity(item.product.id, -1)} className="p-1 hover:text-rose-500 transition-colors">
                         <Minus size={12} />
                       </button>
@@ -415,7 +415,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
                       <button
                         key={chan.id}
                         onClick={() => setCommChannel(chan.id as any)}
-                        className={`flex items-center justify-center gap-2 py-2 rounded-xl text-[10px] font-bold border transition-all ${
+                        className={`flex items-center justify-center gap-2 py-2 rounded-lg text-[10px] font-bold border transition-all ${
                           commChannel === chan.id 
                           ? 'bg-teal-50 border-teal-200 text-teal-700 dark:bg-teal-900/20 dark:border-teal-800' 
                           : 'bg-white dark:bg-slate-900 border-gray-100 dark:border-slate-800 text-gray-400'
@@ -432,7 +432,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
           </div>
 
           {/* Financial Summary */}
-          <div className="bg-slate-900 text-white rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+          <div className="bg-slate-900 text-white rounded-xl p-6 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 p-8 opacity-10 rotate-12">
               <Calculator size={80} />
             </div>
@@ -478,13 +478,13 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
                         type="number"
                         value={amountPaid}
                         onChange={(e) => setAmountPaid(parseFloat(e.target.value) || 0)}
-                        className="w-full pl-8 pr-2 py-2 bg-slate-800 border-none rounded-xl text-sm font-bold text-teal-400 focus:ring-2 focus:ring-teal-500"
+                        className="w-full pl-8 pr-2 py-2 bg-slate-800 border-none rounded-lg text-sm font-bold text-teal-400 focus:ring-2 focus:ring-teal-500"
                       />
                     </div>
                   </div>
                   <div>
                     <label className="text-[10px] font-bold text-slate-500 uppercase mb-1 block">Balance</label>
-                    <div className={`w-full px-3 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${balance <= 0 ? 'bg-teal-500/10 text-teal-400' : 'bg-rose-500/10 text-rose-400'}`}>
+                    <div className={`w-full px-3 py-2 rounded-lg text-sm font-bold flex items-center justify-between ${balance <= 0 ? 'bg-teal-500/10 text-teal-400' : 'bg-rose-500/10 text-rose-400'}`}>
                       <span>${Math.abs(balance).toFixed(2)}</span>
                       {balance <= 0 ? <CheckCircle2 size={14} /> : <AlertCircle size={14} />}
                     </div>
@@ -494,7 +494,7 @@ const NewSalePage: React.FC<NewSalePageProps> = ({ onBack }) => {
 
               <button 
                 disabled={cart.length === 0}
-                className="w-full mt-8 py-4 bg-teal-500 text-slate-900 rounded-2xl font-black text-sm shadow-xl shadow-teal-500/20 hover:bg-teal-400 active:scale-[0.98] transition-all disabled:opacity-30 disabled:hover:bg-teal-500 flex items-center justify-center gap-2 group"
+                className="w-full mt-8 py-4 bg-teal-500 text-slate-900 rounded-lg font-black text-sm shadow-xl shadow-teal-500/20 hover:bg-teal-400 active:scale-[0.98] transition-all disabled:opacity-30 disabled:hover:bg-teal-500 flex items-center justify-center gap-2 group"
               >
                 COMPLETE TRANSACTION
                 <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />

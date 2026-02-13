@@ -9,7 +9,7 @@ import {
   Tag, 
   MessageSquare, 
   Save, 
-  AlertCircle,
+  AlertCircle, 
   Smartphone,
   CheckCircle2,
   FileText,
@@ -74,7 +74,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
         <div className="flex items-center gap-4">
           <button 
             onClick={onBack}
-            className="p-2.5 bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-xl text-gray-500 hover:text-teal-600 dark:hover:text-teal-400 transition-all shadow-sm"
+            className="p-2.5 bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-lg text-gray-500 hover:text-teal-600 dark:hover:text-teal-400 transition-all shadow-sm"
           >
             <ArrowLeft size={20} />
           </button>
@@ -89,7 +89,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
         {/* Main Form */}
         <div className="lg:col-span-8 space-y-6">
           {/* Primary Info */}
-          <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
+          <section className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
             <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <User size={14} className="text-teal-600" />
               1. Basic Profile
@@ -105,7 +105,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     placeholder="e.g. Johnathan Doe"
-                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
                   />
                 </div>
               </div>
@@ -119,7 +119,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                       placeholder="john@example.com"
-                      className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
+                      className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
                     />
                   </div>
                 </div>
@@ -132,7 +132,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
                       value={formData.phone}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
                       placeholder="+254..."
-                      className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
+                      className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
                     />
                   </div>
                 </div>
@@ -141,7 +141,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
           </section>
 
           {/* Address Info */}
-          <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
+          <section className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
             <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <MapPin size={14} className="text-teal-600" />
               2. Geographic Location
@@ -156,7 +156,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
                     value={formData.address}
                     onChange={(e) => setFormData({...formData, address: e.target.value})}
                     placeholder="Building, Street, Area..."
-                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium resize-none transition-colors"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium resize-none transition-colors"
                   />
                 </div>
               </div>
@@ -167,7 +167,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
                     type="text"
                     value={formData.city}
                     onChange={(e) => setFormData({...formData, city: e.target.value})}
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
+                    className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
                   />
                 </div>
                 <div>
@@ -176,7 +176,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
                     type="text"
                     value={formData.region}
                     onChange={(e) => setFormData({...formData, region: e.target.value})}
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
+                    className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
                   />
                 </div>
                 <div>
@@ -185,7 +185,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
                     type="text"
                     value={formData.zip}
                     onChange={(e) => setFormData({...formData, zip: e.target.value})}
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
+                    className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
                   />
                 </div>
               </div>
@@ -193,7 +193,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
           </section>
 
           {/* Notes & Important Info */}
-          <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
+          <section className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
             <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <FileText size={14} className="text-teal-600" />
               3. Internal Remarks
@@ -208,7 +208,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
                     value={formData.notes}
                     onChange={(e) => setFormData({...formData, notes: e.target.value})}
                     placeholder="Enter relevant details about this client's preferences, behavior, or history..."
-                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium resize-none transition-colors"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium resize-none transition-colors"
                   />
                 </div>
               </div>
@@ -241,7 +241,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
 
         {/* Sidebar settings */}
         <div className="lg:col-span-4 space-y-6">
-          <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
+          <section className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
             <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <Tag size={14} className="text-teal-600" />
               4. Classification
@@ -313,7 +313,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
           <button 
             onClick={handleSave}
             disabled={saving || !formData.name || success}
-            className={`w-full py-4 rounded-2xl font-black text-sm transition-all flex items-center justify-center gap-3 shadow-xl ${
+            className={`w-full py-4 rounded-xl font-black text-sm transition-all flex items-center justify-center gap-3 shadow-xl ${
               success 
               ? 'bg-emerald-500 text-white shadow-emerald-500/20' 
               : 'bg-teal-600 text-white shadow-teal-500/20 hover:bg-teal-700 disabled:opacity-50'
@@ -334,7 +334,7 @@ const NewCustomerPage: React.FC<NewCustomerPageProps> = ({ onBack }) => {
             )}
           </button>
           
-          <div className="p-4 bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900/30 rounded-2xl flex gap-3 transition-colors">
+          <div className="p-4 bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900/30 rounded-xl flex gap-3 transition-colors">
             <AlertCircle size={18} className="text-amber-600 shrink-0 mt-0.5" />
             <p className="text-[10px] font-bold text-amber-700 dark:text-amber-400 leading-relaxed uppercase tracking-wider">
               Note: Fields marked with * are mandatory. Providing an email or phone enables automated receipt delivery.

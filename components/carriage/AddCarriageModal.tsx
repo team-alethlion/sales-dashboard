@@ -32,7 +32,7 @@ const AddCarriageModal: React.FC<AddCarriageModalProps> = ({ onClose, onSuccess 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
       <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300" onClick={onClose} />
-      <div className="relative w-full max-w-xl bg-white dark:bg-slate-900 rounded-[2rem] shadow-2xl border border-gray-100 dark:border-slate-800 animate-in zoom-in-95 duration-300 overflow-hidden">
+      <div className="relative w-full max-w-xl bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-800 animate-in zoom-in-95 duration-300 overflow-hidden">
         <div className="p-6 border-b border-gray-50 dark:border-slate-800 flex justify-between items-center bg-gray-50/20 dark:bg-slate-800/20">
           <h3 className="text-lg font-black text-slate-800 dark:text-slate-100 tracking-tight flex items-center gap-2">
             <Plus className="text-teal-600" size={20} /> Add Carriage Entry
@@ -99,14 +99,14 @@ const AddCarriageModal: React.FC<AddCarriageModalProps> = ({ onClose, onSuccess 
             <button 
               type="button" 
               onClick={onClose}
-              className="flex-1 py-4 bg-gray-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-gray-200 transition-all"
+              className="flex-1 py-4 bg-gray-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-gray-200 transition-all"
             >
               Cancel
             </button>
             <button 
               type="submit"
               disabled={saving}
-              className="flex-[2] py-4 bg-teal-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-xl shadow-teal-900/10 hover:bg-teal-700 transition-all flex items-center justify-center gap-2 active:scale-95"
+              className="flex-[2] py-4 bg-teal-600 text-white rounded-xl text-xs font-black uppercase tracking-widest shadow-xl shadow-teal-900/10 hover:bg-teal-700 transition-all flex items-center justify-center gap-2 active:scale-95"
             >
               {saving ? (
                 <Loader2 size={16} className="animate-spin" />

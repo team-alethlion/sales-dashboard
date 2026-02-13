@@ -48,7 +48,7 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
       />
       
       {/* Modal Content */}
-      <div className="relative w-full h-full sm:h-auto sm:max-w-2xl bg-white dark:bg-slate-900 rounded-none sm:rounded-[2.5rem] shadow-2xl border-none sm:border border-gray-100 dark:border-slate-800 flex flex-col overflow-hidden animate-in sm:zoom-in-95 sm:slide-in-from-top-4 duration-300">
+      <div className="relative w-full h-full sm:h-auto sm:max-w-2xl bg-white dark:bg-slate-900 rounded-none sm:rounded-2xl shadow-2xl border-none sm:border border-gray-100 dark:border-slate-800 flex flex-col overflow-hidden animate-in sm:zoom-in-95 sm:slide-in-from-top-4 duration-300">
         <div className="flex items-center px-6 py-5 border-b border-gray-50 dark:border-slate-800 bg-white dark:bg-slate-900 shrink-0">
           <Search size={22} className="text-teal-600 mr-4" />
           <input
@@ -65,7 +65,7 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
             </kbd>
             <button 
               onClick={onClose} 
-              className="p-2.5 bg-gray-50 dark:bg-slate-800 text-gray-400 rounded-xl hover:text-rose-500 transition-colors shadow-sm"
+              className="p-2.5 bg-gray-50 dark:bg-slate-800 text-gray-400 rounded-lg hover:text-rose-500 transition-colors shadow-sm"
             >
               <X size={22} />
             </button>
@@ -81,10 +81,10 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
                   {quickActions.map((action, idx) => (
                     <button
                       key={idx}
-                      className="group flex items-center justify-between p-4 rounded-2xl hover:bg-teal-50 dark:hover:bg-teal-900/20 text-slate-700 dark:text-slate-300 transition-all text-left border border-transparent hover:border-teal-100 dark:hover:border-teal-800"
+                      className="group flex items-center justify-between p-4 rounded-xl hover:bg-teal-50 dark:hover:bg-teal-900/20 text-slate-700 dark:text-slate-300 transition-all text-left border border-transparent hover:border-teal-100 dark:hover:border-teal-800"
                     >
                       <div className="flex items-center gap-4">
-                        <div className="p-3 bg-gray-50 dark:bg-slate-800 rounded-xl group-hover:bg-white dark:group-hover:bg-slate-900 group-hover:text-teal-600 transition-all shadow-sm">
+                        <div className="p-3 bg-gray-50 dark:bg-slate-800 rounded-lg group-hover:bg-white dark:group-hover:bg-slate-900 group-hover:text-teal-600 transition-all shadow-sm">
                           {action.icon}
                         </div>
                         <span className="text-sm font-black uppercase tracking-widest">{action.label}</span>
@@ -100,12 +100,12 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
                 </div>
               </div>
 
-              <div className="bg-slate-900 dark:bg-teal-950/20 p-8 rounded-[2rem] relative overflow-hidden group">
+              <div className="bg-slate-900 dark:bg-teal-950/20 p-8 rounded-2xl relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-4 opacity-5 rotate-12 group-hover:scale-110 transition-transform">
                    <Command size={100} className="text-white" />
                 </div>
                 <div className="flex items-start gap-4 relative z-10">
-                  <div className="p-3 bg-teal-500 text-white rounded-xl shadow-lg">
+                  <div className="p-3 bg-teal-500 text-white rounded-lg shadow-lg">
                     <Command size={20} />
                   </div>
                   <div>
@@ -119,7 +119,7 @@ const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({ isOpen, onClose }
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-20 text-center animate-in fade-in zoom-in-95">
-              <div className="w-20 h-20 bg-gray-50 dark:bg-slate-800 rounded-3xl flex items-center justify-center text-teal-600 mb-6 shadow-inner animate-pulse">
+              <div className="w-20 h-20 bg-gray-50 dark:bg-slate-800 rounded-2xl flex items-center justify-center text-teal-600 mb-6 shadow-inner animate-pulse">
                 <Search size={32} />
               </div>
               <h3 className="text-lg font-black text-slate-800 dark:text-slate-100 tracking-tight">Locating "{query}"...</h3>

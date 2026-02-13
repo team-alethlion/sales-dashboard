@@ -73,7 +73,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
         <div className="flex items-center gap-4">
           <button 
             onClick={onBack}
-            className="p-2.5 bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-xl text-gray-500 hover:text-teal-600 dark:hover:text-teal-400 transition-all shadow-sm"
+            className="p-2.5 bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-lg text-gray-500 hover:text-teal-600 dark:hover:text-teal-400 transition-all shadow-sm"
           >
             <ArrowLeft size={20} />
           </button>
@@ -89,7 +89,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
         <div className="lg:col-span-8 space-y-6">
           
           {/* Section 1: Basic Identity */}
-          <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
+          <section className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
             <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <Package size={14} className="text-teal-600" />
               1. Identity & Classification
@@ -103,7 +103,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
                   placeholder="e.g. UltraHD Curved Monitor 32\"
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium transition-colors"
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -116,7 +116,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
                       value={formData.sku}
                       onChange={(e) => setFormData({...formData, sku: e.target.value})}
                       placeholder="PROD-001"
-                      className="w-full pl-9 pr-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium"
+                      className="w-full pl-9 pr-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium"
                     />
                   </div>
                 </div>
@@ -129,7 +129,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
                       value={formData.barcode}
                       onChange={(e) => setFormData({...formData, barcode: e.target.value})}
                       placeholder="7102930..."
-                      className="w-full pl-9 pr-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium"
+                      className="w-full pl-9 pr-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium"
                     />
                   </div>
                 </div>
@@ -140,7 +140,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
                   <select 
                     value={formData.category}
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
-                    className="w-full px-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold appearance-none cursor-pointer"
+                    className="w-full px-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold appearance-none cursor-pointer"
                   >
                     <option>Electronics</option>
                     <option>Home & Living</option>
@@ -155,7 +155,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
                     value={formData.brand}
                     onChange={(e) => setFormData({...formData, brand: e.target.value})}
                     placeholder="e.g. Samsung"
-                    className="w-full px-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium"
+                    className="w-full px-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium"
                   />
                 </div>
               </div>
@@ -163,7 +163,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
           </section>
 
           {/* Section 2: Financials */}
-          <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
+          <section className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] flex items-center gap-2">
                 <DollarSign size={14} className="text-teal-600" />
@@ -186,7 +186,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
                   value={formData.costPrice}
                   onChange={(e) => setFormData({...formData, costPrice: e.target.value})}
                   placeholder="0.00"
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-black text-slate-700 dark:text-slate-200"
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-black text-slate-700 dark:text-slate-200"
                 />
               </div>
               <div>
@@ -196,7 +196,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
                   value={formData.sellingPrice}
                   onChange={(e) => setFormData({...formData, sellingPrice: e.target.value})}
                   placeholder="0.00"
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-black text-teal-600"
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-black text-teal-600"
                 />
               </div>
               <div>
@@ -204,7 +204,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
                 <select 
                   value={formData.tax}
                   onChange={(e) => setFormData({...formData, tax: e.target.value})}
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold"
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold"
                 >
                   <option value="16">VAT (16%)</option>
                   <option value="0">Zero Rated (0%)</option>
@@ -215,7 +215,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
           </section>
 
           {/* Section 3: Inventory & Supply */}
-          <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
+          <section className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
             <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <Layers size={14} className="text-teal-600" />
               3. Stock & Supply Chain
@@ -230,7 +230,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
                       value={formData.initialStock}
                       onChange={(e) => setFormData({...formData, initialStock: e.target.value})}
                       placeholder="0"
-                      className="w-full px-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium"
+                      className="w-full px-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium"
                     />
                   </div>
                   <div>
@@ -240,7 +240,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
                       value={formData.minStock}
                       onChange={(e) => setFormData({...formData, minStock: e.target.value})}
                       placeholder="5"
-                      className="w-full px-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-rose-500/50 text-sm font-bold text-rose-500"
+                      className="w-full px-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-rose-500/50 text-sm font-bold text-rose-500"
                     />
                   </div>
                 </div>
@@ -251,7 +251,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
                     <select 
                       value={formData.supplier}
                       onChange={(e) => setFormData({...formData, supplier: e.target.value})}
-                      className="w-full pl-9 pr-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold appearance-none cursor-pointer"
+                      className="w-full pl-9 pr-4 py-2.5 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-bold appearance-none cursor-pointer"
                     >
                       <option value="">Select Supplier...</option>
                       <option>Global Tech Inc.</option>
@@ -268,7 +268,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
                   placeholder="Technical specs, features, and selling points..."
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium resize-none h-[104px]"
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-800 rounded-lg border-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium resize-none h-[104px]"
                 />
               </div>
             </div>
@@ -278,7 +278,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
         {/* Sidebar Controls */}
         <div className="lg:col-span-4 space-y-6">
           {/* Status & Media */}
-          <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
+          <section className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-gray-50 dark:border-slate-800 shadow-sm transition-colors">
             <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <Tag size={14} className="text-teal-600" />
               Status & Media
@@ -305,7 +305,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
 
               <div>
                 <label className="text-[10px] font-bold text-gray-400 uppercase ml-1 mb-2 block">Product Images</label>
-                <div className="border-2 border-dashed border-gray-100 dark:border-slate-800 rounded-2xl p-8 text-center bg-gray-50/30 hover:border-teal-200 transition-all cursor-pointer">
+                <div className="border-2 border-dashed border-gray-100 dark:border-slate-800 rounded-xl p-8 text-center bg-gray-50/30 hover:border-teal-200 transition-all cursor-pointer">
                   <ImageIcon size={32} className="mx-auto text-gray-300 mb-2" />
                   <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Upload Media</p>
                 </div>
@@ -318,7 +318,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
             <button 
               onClick={handleSave}
               disabled={saving || !formData.name || success}
-              className={`w-full py-4 rounded-2xl font-black text-sm transition-all flex items-center justify-center gap-3 shadow-xl ${
+              className={`w-full py-4 rounded-xl font-black text-sm transition-all flex items-center justify-center gap-3 shadow-xl ${
                 success 
                 ? 'bg-emerald-500 text-white shadow-emerald-500/20' 
                 : 'bg-teal-600 text-white shadow-teal-500/20 hover:bg-teal-700 disabled:opacity-50'
@@ -339,7 +339,7 @@ const NewProductPage: React.FC<NewProductPageProps> = ({ onBack }) => {
               )}
             </button>
             
-            <div className="p-4 bg-blue-50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900/30 rounded-2xl flex gap-3">
+            <div className="p-4 bg-blue-50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900/30 rounded-xl flex gap-3">
               <Info size={18} className="text-blue-600 shrink-0 mt-0.5" />
               <p className="text-[10px] font-bold text-blue-700 dark:text-blue-400 leading-relaxed uppercase tracking-wider">
                 Tip: Adding a Barcode allows for faster checkout using the POS scanner module. SKU codes are used for internal stock tracking.
